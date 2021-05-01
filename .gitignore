@@ -1,0 +1,27 @@
+# next.js
+node_modules
+.next
+
+# local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+**/migrations/*
+!**/migrations/__init__.py
+db.sqlite3
+/env
+
+# Python # 
+*.py[cod] 
+*$py.class
+
+# Visual Studio Code # 
+.vscode/* 
