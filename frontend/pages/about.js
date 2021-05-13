@@ -40,7 +40,7 @@ export default function About() {
                 <div className="max-w-27rem w-100 mx-auto">
                   <img
                     className="img-fluid"
-                    src="/assets/img/logos/logo-comp.png"
+                    src="/assets/svg/logos/logo-comp.svg"
                     alt="Image Description"
                   />
                 </div>

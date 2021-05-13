@@ -45,7 +45,8 @@ const FilterElement = ({ price_min = 0, price_max = 0, specifications }) => {
     const query = router.query;
     query.price_min = select_price_min;
     query.price_max = select_price_max;
-    query.specification = select_specification.join(",");
+    query.specification =
+      select_specification.length > 0 ? select_specification.join(",") : [];
     router.push({
       pathname: path,
       query: query,

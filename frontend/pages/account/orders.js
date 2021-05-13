@@ -24,7 +24,9 @@ export default function Orders() {
 
   const { data, mutate, error } = useSWR(
     [
-      `${process.env.API_URL}/list-orders/?page=${currentPage}&delivered=${delivered}&received=${received}&search=${search}`,
+      `${process.env.API_URL}/list-orders/?${
+        currentPage > 1 ? `page=${currentPage}&` : null
+      }delivered=${delivered}&received=${received}&search=${search}`,
       Cookies.get("token"),
     ],
     fetchWithToken

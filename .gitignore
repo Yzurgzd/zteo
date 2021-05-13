@@ -25,3 +25,13 @@ db.sqlite3
 
 # Visual Studio Code # 
 .vscode/* 
+
+# NGINX
+nginx
+
+# DOCKER
+docker-compose.yml
+Dockerfile
+
+# Database
+data

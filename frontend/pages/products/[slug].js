@@ -231,6 +231,7 @@ export default function Products({ data, currentPage }) {
                 activeClassName={"active"}
                 containerClassName={"pagination justify-content-center"}
                 initialPage={currentPage - 1}
+                forcePage={currentPage - 1}
                 pageCount={data.page_count}
                 onPageChange={handlePagination}
               />
@@ -267,9 +268,9 @@ export async function getServerSideProps({ query }) {
   const specification = query.specification || [];
 
   const response = await fetch(
-    `${process.env.API_URL}/products/${
-      query.slug
-    }/?page=${page}&price_min=${price_min}&price_max=${price_max}${
+    `${process.env.API_URL}/products/${query.slug}/?${
+      page > 1 ? `page=${page}&` : null
+    }price_min=${price_min}&price_max=${price_max}${
       specification.length > 0 ? `&specification=${specification}` : ""
     }`
   );

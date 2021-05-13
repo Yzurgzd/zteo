@@ -111,7 +111,7 @@ export default function Header() {
               <Link href={`/`}>
                 <a className="navbar-brand">
                   <img
-                    src="/assets/img/logos/logo.png"
+                    src="/assets/svg/logos/logo.svg"
                     alt="logo"
                     width="140"
                     className="d-inline-block align-top"
@@ -185,9 +185,12 @@ export default function Header() {
                                 className="col-sm-3 mb-3 mb-sm-0"
                                 key={category.id}
                               >
-                                <span className="d-block h5">
-                                  {category.name}
-                                </span>
+                                <Link
+                                  href={`/products/[slug]`}
+                                  as={`/products/${category.slug}`}
+                                >
+                                  <a className="d-block h5">{category.name}</a>
+                                </Link>
                                 <div className="mb-3">
                                   {Array.isArray(category.get_children) &&
                                   category.get_children.length ? (
@@ -250,9 +253,6 @@ export default function Header() {
                         <div className="row no-gutters">
                           <div className="col-6">
                             <div className="navbar-promo-footer-item">
-                              <span className="navbar-promo-footer-text">
-                                Check what's new
-                              </span>
                               <Link href={`/categories`}>
                                 <a className="navbar-promo-footer-text">
                                   Все категории

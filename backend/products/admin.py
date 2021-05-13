@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 from .models import Product, Category, Specification, SpecificationValue, ProductSpecificationValue, ProductImage, Review
-
+from import_export.admin import ImportExportModelAdmin
+from .resources import ProductResource
 from jet.admin import CompactInline
 from django import forms
 from django.utils.safestring import mark_safe
@@ -30,7 +31,8 @@ class ProductSpecificationValueInline(CompactInline):
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(ImportExportModelAdmin):
+    resource_class = ProductResource
     list_display = ('article', 'name', 'get_image', 'hide')
     list_editable = ('hide', )
     list_filter = ('category', 'hide')

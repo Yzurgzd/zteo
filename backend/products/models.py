@@ -9,7 +9,7 @@ from django.db.models import Avg, Q
 class Category(models.Model):
     name = models.CharField('Наименование', max_length=100, unique=True)
     poster = models.ImageField(
-        'Изображение категории', upload_to='products/category/poster/%Y/%m/%d/')
+        'Изображение категории', upload_to='products/category/%Y/%m/%d/')
     parent = models.ForeignKey(
         'self', verbose_name='Родитель', on_delete=models.SET_NULL, null=True, blank=True)
     slug = models.SlugField(max_length=150, unique=True)
@@ -41,14 +41,14 @@ class Product(models.Model):
     article = models.CharField('Артикул', max_length=100, unique=True)
     name = models.CharField('Наименование', max_length=100, unique=True)
     poster = models.ImageField(
-        'Изображение товара', upload_to='products/poster/%Y/%m/%d/')
+        'Изображение товара', upload_to='products/poster/%Y/%m/%d/', default='products/poster/no_photo.jpg')
     description = models.TextField('Описание')
     category = models.ForeignKey(
         Category, verbose_name='Категория', on_delete=models.SET_NULL, null=True)
     price = models.DecimalField(
-        'Цена', default=0, max_digits=6, decimal_places=0, help_text='Указывать сумму в рублях')
+        'Цена предоплаты', default=0, max_digits=19, decimal_places=0, help_text='Указывать сумму в рублях')
     discount_price = models.DecimalField(
-        'Цена со скидкой', max_digits=6, decimal_places=0, help_text='Указывать сумму в рублях', blank=True, null=True)
+        'Цена предоплаты со скидкой', max_digits=19, decimal_places=0, help_text='Указывать сумму в рублях', blank=True, null=True)
     date_added = models.DateField('Дата добавления', auto_now_add=True)
     hide = models.BooleanField('Скрыть', default=False)
     slug = models.SlugField(max_length=150, unique=True)

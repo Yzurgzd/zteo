@@ -33,6 +33,20 @@ export default function Home({ categories }) {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
+              src="/assets/img/others/baner1.jpg"
+              className="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="/assets/img/others/baner2.jpg"
+              className="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div className="carousel-item">
+            <img
               src="/assets/img/others/baner3.jpg"
               className="d-block w-100"
               alt="..."
@@ -41,20 +55,6 @@ export default function Home({ categories }) {
           <div className="carousel-item">
             <img
               src="/assets/img/others/baner4.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="/assets/img/others/baner5.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="/assets/img/others/baner7.jpg"
               className="d-block w-100"
               alt="..."
             />
@@ -117,15 +117,14 @@ export default function Home({ categories }) {
                 <figure className="w-100 max-w-8rem mr-4">
                   <img
                     className="img-fluid"
-                    src="/assets/svg/icons/icon-return.svg"
+                    src="/assets/svg/icons/icon-wallet.svg"
                     alt="SVG"
                   />
                 </figure>
                 <div className="media-body">
-                  <h4 className="mb-1">14 дней возврата</h4>
+                  <h4 className="mb-1">Лучшая цена</h4>
                   <p className="font-size-1 mb-0">
-                    Мы предлагаем вам полный возврат средств в течение 14 дней с
-                    момента покупки.
+                    Мы предлагаем вам лучшую цену на продукцию.
                   </p>
                 </div>
               </div>
@@ -143,9 +142,9 @@ export default function Home({ categories }) {
                   />
                 </figure>
                 <div className="media-body">
-                  <h4 className="mb-1">Бесплатная доставка</h4>
+                  <h4 className="mb-1">Быстрая доставка</h4>
                   <p className="font-size-1 mb-0">
-                    Получите бесплатную доставку по каждому заказу.
+                    Получите быструю доставку по каждому заказу.
                   </p>
                 </div>
               </div>
@@ -305,7 +304,7 @@ export default function Home({ categories }) {
             <div className="mx-3">
               <img
                 className="max-w-11rem max-w-md-13rem mx-auto"
-                src="/assets/img/clients-logo/Belaz-machinery-llc.png"
+                src="/assets/svg/clients-logo/Belaz-machinery-llc.svg"
                 alt="Image Description"
               />
             </div>
@@ -314,7 +313,7 @@ export default function Home({ categories }) {
             <div className="mx-3">
               <img
                 className="max-w-11rem max-w-md-13rem mx-auto"
-                src="/assets/img/clients-logo/Uralskiye_lokomotivy.png"
+                src="/assets/svg/clients-logo/Uralskiye_lokomotivy.svg"
                 alt="Image Description"
               />
             </div>
@@ -323,7 +322,7 @@ export default function Home({ categories }) {
             <div className="mx-3">
               <img
                 className="max-w-11rem max-w-md-13rem mx-auto"
-                src="/assets/img/clients-logo/Kartex.png"
+                src="/assets/svg/clients-logo/Kartex.svg"
                 alt="Image Description"
               />
             </div>
@@ -334,10 +333,17 @@ export default function Home({ categories }) {
   );
 }
 
+// Эта функция вызывается во время сборки на стороне сервера.
+// Он не будет вызываться на стороне клиента, поэтому вы даже можете сделать
+// прямые запросы к базе данных. См. Раздел «Технические подробности».
 export async function getServerSideProps() {
+  // Вызов внешней конечной точки API для получения сообщений.
+  // Вы можете использовать любую библиотеку для извлечения данных
   const response = await fetch(`${process.env.API_URL}/categories/`);
   const categories = await response.json();
+  // Возвращая {props: {categories}}, компонент
+  // будет получать `categories` как опору во время сборки
   return {
-    props: { categories },
+    props: { categories }, // будет передан компоненту страницы как реквизит
   };
 }

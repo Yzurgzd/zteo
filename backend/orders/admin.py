@@ -1,10 +1,12 @@
 from django.contrib import admin
-
+from import_export.admin import ImportExportModelAdmin
 from .models import Order, Cart, Coupon
+from .resources import OrderResource
 
 
 @admin.register(Order)
-class OrderAdmin(admin.ModelAdmin):
+class OrderAdmin(ImportExportModelAdmin):
+    resource_class = OrderResource
     list_display = (
         'user',
         'ordered',

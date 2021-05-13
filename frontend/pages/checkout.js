@@ -15,6 +15,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import FeedbackModel from "../components/feedbackModel";
 
 export default function Checkout() {
   const token = Cookies.get("token");
@@ -125,7 +126,7 @@ export default function Checkout() {
                                 Бесплатно - Стандартная доставка
                               </span>
                               <span className="d-block text-muted">
-                                Доставка может занять 5-6 рабочих дней.
+                                Доставка может занять 30-90 рабочих дней.
                               </span>
                             </label>
                           </div>
@@ -174,7 +175,12 @@ export default function Checkout() {
                       <span className="font-weight-bold mr-1">
                         Нужна помощь?
                       </span>
-                      <a className="link-underline" href="#">
+                      <a
+                        className="link-underline"
+                        type="submit"
+                        data-bs-toggle="modal"
+                        data-bs-target="#feedbackModal"
+                      >
                         Связаться
                       </a>
                     </div>
@@ -194,6 +200,7 @@ export default function Checkout() {
           )}
         </div>
       )}
+      <FeedbackModel />
     </Layout>
   );
 }

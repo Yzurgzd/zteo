@@ -41,7 +41,15 @@ export default function Login() {
         alert.error(result.non_field_errors);
       }
       if (result.detail) {
-        alert.error(result.detail);
+        if (
+          result.detail === "No active account found with the given credentials"
+        ) {
+          alert.error(
+            "Не найдено активной учетной записи с указанными данными"
+          );
+        } else {
+          alert.error(result.detail);
+        }
       }
     }
   }

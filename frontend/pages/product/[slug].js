@@ -70,7 +70,7 @@ export default function Product({ product }) {
   let addToCartElement = null;
   if (loadingUser) {
     addToCartElement = (
-      <Skeleton style={{ borderRadius: "6.1875rem" }} width={445} height={51} />
+      <Skeleton style={{ borderRadius: "6.1875rem" }} height={51} />
     );
   }
   if (user) {
@@ -98,25 +98,21 @@ export default function Product({ product }) {
 
   let profile = null;
   if (loadingUser) {
-    profile = (
-      <div className="spinner-grow text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    );
+    profile = <Skeleton height={51} />;
   }
   if (user) {
     profile = (
       <form onSubmit={handleSubmit}>
-        <Rating
-          emptySymbol={<i className="text-muted far fa-star"></i>}
-          fullSymbol={<i className="text-warning fas fa-star"></i>}
-          initialRating={rating}
-          onChange={setRating}
-        />
         <div className="form-group">
           <label className="input-label" htmlFor="exampleFormControlTextarea1">
             Оставить отзыв
           </label>
+          <Rating
+            emptySymbol={<i className="text-muted far fa-star"></i>}
+            fullSymbol={<i className="text-warning fas fa-star"></i>}
+            initialRating={rating}
+            onChange={setRating}
+          />
           <textarea
             id="exampleFormControlTextarea1"
             className="form-control"
@@ -207,7 +203,9 @@ export default function Product({ product }) {
 
             {/* Price */}
             <div className="mb-5">
-              <h2 className="font-size-1 text-body mb-0">Итоговая цена:</h2>
+              <h2 className="font-size-1 text-body mb-0">
+                Итоговая цена предоплаты:
+              </h2>
               {product.discount_price ? (
                 <>
                   <span className="text-dark font-size-2 font-weight-bold">
@@ -253,7 +251,7 @@ export default function Product({ product }) {
                           </span>
                           <span className="media-body">
                             <span className="d-block font-size-1 font-weight-bold">
-                              Бесплатная доставка
+                              Быстрая доставка
                             </span>
                           </span>
                         </span>
@@ -275,7 +273,7 @@ export default function Product({ product }) {
                 >
                   <div className="card-body">
                     <p className="small mb-0">
-                      Мы предлагаем бесплатную доставку в любую точку России.
+                      Мы предлагаем быструю доставку в любую точку России.
                       Квалифицированная команда доставки доставит товар к вам.
                     </p>
                   </div>
@@ -303,13 +301,13 @@ export default function Product({ product }) {
                           <span className="w-100 max-w-6rem mr-3">
                             <img
                               className="img-fluid"
-                              src="/assets/svg/icons/icon-return.svg"
+                              src="/assets/svg/icons/icon-wallet.svg"
                               alt="SVG"
                             />
                           </span>
                           <span className="media-body">
                             <span className="d-block font-size-1 font-weight-bold">
-                              14 дней возврата
+                              Лушая цена
                             </span>
                           </span>
                         </span>
@@ -331,8 +329,8 @@ export default function Product({ product }) {
                 >
                   <div className="card-body">
                     <p className="small mb-0">
-                      Если вы не удовлетворены, верните его и получите полный
-                      возврат. Мы позаботимся о упаковке и обратной доставке.
+                      Мы предлагаем вам лучшую цену на продукцию. Заботимся о
+                      упаковке и доставке.
                     </p>
                   </div>
                 </div>

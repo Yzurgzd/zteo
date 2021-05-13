@@ -7,6 +7,7 @@ import Link from "next/link";
 import EmptyCart from "../components/emptyCart";
 import LoadingElement from "../components/loadingElement";
 import Layout from "../components/layout";
+import FeedbackModel from "../components/feedbackModel";
 
 export default function Cart() {
   const token = Cookies.get("token");
@@ -158,12 +159,14 @@ export default function Cart() {
                         <div className="media-body">
                           <div className="row">
                             <div className="col-md-7 mb-3 mb-md-0">
-                              <a
-                                className="h5 d-block"
-                                href="{{ cart.product.get_absolute_url }}"
+                              <Link
+                                href={`/product/[slug]`}
+                                as={`/product/${cart.product.slug}`}
                               >
-                                {cart.product.name}
-                              </a>
+                                <a className="h5 d-block">
+                                  {cart.product.name}
+                                </a>
+                              </Link>
 
                               <div className="d-block d-md-none">
                                 {cart.product.discount_price ? (
@@ -307,7 +310,7 @@ export default function Cart() {
                               className="custom-control-input"
                               id="deliveryRadio1"
                               name="deliveryRadio"
-                              // checked
+                              defaultChecked
                             />
                             <label
                               className="custom-control-label ml-1"
@@ -317,7 +320,7 @@ export default function Cart() {
                                 Бесплатно - Стандартная доставка
                               </span>
                               <span className="d-block text-muted">
-                                Доставка может занять 5-6 рабочих дней.
+                                Доставка может занять 30-90 рабочих дней.
                               </span>
                             </label>
                           </div>
@@ -380,16 +383,7 @@ export default function Cart() {
                             aria-expanded="false"
                             aria-controls="shopCartOne"
                           >
-                            Промо-код?
-                            <i
-                              className="far fa-question-circle text-body ml-1"
-                              data-bs-container="body"
-                              data-bs-toggle="popover"
-                              data-bs-placement="top"
-                              data-bs-trigger="hover"
-                              title="Промо-код"
-                              data-bs-content="Действителен только для товаров по полной цене. Некоторые продукты, возможно исключены."
-                            ></i>
+                            Промо-код
                           </a>
                         </h3>
                       </div>
@@ -431,8 +425,8 @@ export default function Cart() {
                                 onChange={(e) => (
                                   setCode(e.target.value), setCodeError("")
                                 )}
-                                placeholder="Promo code"
-                                aria-label="Promo code"
+                                placeholder="код"
+                                aria-label="код"
                               />
                               <div className="input-group-append">
                                 <button
@@ -467,7 +461,12 @@ export default function Cart() {
                       <span className="font-weight-bold mr-1">
                         Нужна помощь?
                       </span>
-                      <a className="link-underline" href="#">
+                      <a
+                        className="link-underline"
+                        type="submit"
+                        data-bs-toggle="modal"
+                        data-bs-target="#feedbackModal"
+                      >
                         Связаться
                       </a>
                     </div>
@@ -481,6 +480,7 @@ export default function Cart() {
           )}
         </div>
       )}
+      <FeedbackModel />
     </Layout>
   );
 }

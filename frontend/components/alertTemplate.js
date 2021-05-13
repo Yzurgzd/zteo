@@ -4,7 +4,7 @@ export const AlertSoftPrimaryTemplate = ({
   message,
   close,
 }) => (
-  <div className="alert alert-primary media" role="alert">
+  <div style={style} className="alert alert-primary media" role="alert">
     <strong>
       {options.type === "info" && (
         <i className="fas fa-info-circle mt-1 mr-1" />
